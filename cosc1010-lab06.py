@@ -1,12 +1,10 @@
-# Your Name Here
+# Andrew Deba
 # UWYO COSC 1010
-# Submission Date
+# Submission Date: 10-11-2024
 # Lab 06
-# Lab Section: 
-# Sources, people worked with, help given to: 
-# your
-# comments
-# here
+# Lab Section: 18
+# Sources, people worked with, help given to: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace, 
+
 
 
 random_string = """
@@ -61,40 +59,53 @@ lrslowamkcwolbcgfkfciegdwqskuazxnycqkkggzsowcmafay
 ibmkdwkqmdkjesqnjiqpijixbwjhenmsrrlpcseliiajlvcaac
 zkdenxczyooloczcaahnkehbwimvieedpdlqfafbqvxvfmvabd
 """
-random_string = random_string.replace("\n","") #remove all newline characters
-print(len(random_string)) # Print out the size for reference 
+#remove all newline characters
+#print(random_string) # Print out the size for reference 
 
 # Above is a string with 2500 characters.
 # Create a program that goes through and counts the occurrence of each character, excluding \n using a  dictionary
+
+random_string = random_string.replace("\n","") 
+
+reoccurance_dict = {}
+
+for letter in random_string:
+    if letter in reoccurance_dict.keys():
+        reoccurance_dict[letter] += 1
+    else:
+        reoccurance_dict[letter] = 1
+
+sorted_dict = sorted(reoccurance_dict.keys())
+
+for key in sorted_dict:
+    print(key," : ", reoccurance_dict[key])
+
 # Output each letter and its corresponding occurrence in alphabetical order
-# Output which letter occurred the most 
-# Output which letter occurred the least 
-# Output what the percentage of the string each character is, again in alphabetical
+#for key in reoccurance_dict:
+    #print(key, reoccurance_dict[key])
 
-#Tips and trick:
-# You can iterate through strings like you would a list
-# All characters are lowercase 
-# Each letter will be PAIRED with its corresponding value 
-# That is to say, this is a great use of dictionaries
-    # You will  need to add the letter to the dictionary on first occurrence 
-    # Then increment its corresponding count 
+# Output which letter occurred the most and which letter occurred the least 
 
+max_num = 0
+min_num = 10000000
+max_letter = 0
+min_letter = 0
 
-#Load all the elements into a dictionary
-#Will need to first declare a dictionary 
+for object in reoccurance_dict.keys():
+    if reoccurance_dict[object] < min_num:
+        min_letter = object
+        min_num = reoccurance_dict[object]
 
-# Output: each letter and its corresponding occurrence in alphabetical order
+for object in reoccurance_dict.keys():
+    if reoccurance_dict[object] > max_num:
+        max_letter = object
+        max_num = reoccurance_dict[object]
 
-print("*"*75)
-# Output which letter occurred the most 
-
-most_occurred = ""
-least_occurred = ""
-
-print(f"The letter that occurred the most is {most_occurred}")
-print("*"*75)
-# Output which letter occurred the least 
-print(f"The letter that occurred the most is {least_occurred}")
-print("*"*75)
+print(f"The letter that occurred the most is {max_letter}")
+print(f"The letter that occurred the least is {min_letter}")
 
 # Output what the percentage of the string each character is, again in alphabetical
+for percent in sorted_dict:
+    letter_percent = reoccurance_dict[percent] / 2500
+    print(f"The letter {percent} makes up {letter_percent}% of the string")
+
